@@ -95,7 +95,7 @@ export default function ServicesPage() {
             opacity: 1,
             y: 0,
             duration: 0.7,
-            ease: [0.16, 1, 0.3, 1],
+            ease: "power3.out",
             scrollTrigger: {
               trigger: section,
               start: "top 85%",
