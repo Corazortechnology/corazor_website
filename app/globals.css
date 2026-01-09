@@ -1,0 +1,250 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0A0F24;
+  --neon-accent: #0FDBB3;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--background);
+  color: #ffffff;
+}
+
+body {
+  background-color: var(--background);
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Smooth scrolling */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-accent);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0bc99d;
+}
+
+/* Neon glow utilities */
+@layer utilities {
+  .neon-glow {
+    text-shadow: 
+      0 0 8px rgba(15, 219, 179, 0.5),
+      0 0 22px rgba(0, 249, 218, 0.4),
+      0 0 35px rgba(15, 219, 179, 0.2);
+  }
+  
+  .neon-border-glow {
+    box-shadow: 
+      0 0 8px rgba(15, 219, 179, 0.5),
+      0 0 22px rgba(0, 249, 218, 0.4),
+      inset 0 0 10px rgba(15, 219, 179, 0.1);
+  }
+
+  .neon-gradient {
+    background: linear-gradient(135deg, #0FDBB3 0%, #00F9DA 50%, #0FDBB3 100%);
+    background-size: 200% auto;
+    animation: gradient-shift 3s linear infinite;
+  }
+
+  .neon-gradient-text {
+    background: linear-gradient(135deg, #0FDBB3 0%, #00F9DA 50%, #0FDBB3 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 3s linear infinite;
+  }
+
+  .neon-underline {
+    position: relative;
+  }
+
+  .neon-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #0FDBB3, #00F9DA, #0FDBB3);
+    background-size: 200% 100%;
+    animation: gradient-shift 3s linear infinite;
+    box-shadow: 0 0 8px rgba(15, 219, 179, 0.7), 0 0 22px rgba(0, 249, 218, 0.4);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Typography refinements */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+h1 {
+  letter-spacing: -0.03em;
+}
+
+body {
+  color: #D4DFEA;
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  body {
+    line-height: 1.75;
+  }
+  
+  h1, h2, h3 {
+    line-height: 1.3;
+  }
+}
+
+/* Consistent spacing scale */
+.section-padding {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+/* Consistent border radius */
+.card-radius {
+  border-radius: 1rem;
+}
+
+@media (min-width: 768px) {
+  .card-radius {
+    border-radius: 1.5rem;
+  }
+}
+
+/* Performance optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+canvas {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+[class*="motion"] {
+  will-change: transform, opacity;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Responsive text sizing for very small devices */
+@media (max-width: 380px) {
+  h1 {
+    font-size: clamp(2rem, 8vw, 3rem) !important;
+  }
+  h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem) !important;
+  }
+  h3 {
+    font-size: clamp(1.25rem, 5vw, 1.5rem) !important;
+  }
+}
+
+/* Prevent horizontal scroll */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid #0FDBB3;
+  outline-offset: 3px;
+  border-radius: 6px;
+  box-shadow: 0 0 0 4px rgba(15, 219, 179, 0.2);
+}
+
+/* Improved button focus states */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #0FDBB3;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(15, 219, 179, 0.15), 0 0 12px rgba(15, 219, 179, 0.4);
+}
+
+/* Skip to main content link */
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #0FDBB3;
+  color: #0A0F24;
+  padding: 8px 16px;
+  z-index: 100;
+  text-decoration: none;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-to-main:focus {
+  top: 0;
+}
+
